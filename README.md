@@ -127,5 +127,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## Authors and acknowledgment
-
-- [Saurav Hathi](https://github.com/sauravhathi)
+Original
+- Saurav Hathi
+- Juan Pablo Zuniga https://github.com/juanpablozunigahidalgo Updated
+- 
