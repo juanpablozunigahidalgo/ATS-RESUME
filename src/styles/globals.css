@@ -129,16 +129,66 @@
         margin: 10mm;
     }
 
+    html,
+    body {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
     .preview {
-        overflow-y: visible !important;
+        overflow: visible !important;
+        height: auto !important;
+        max-height: none !important;
+        position: static !important;
+        max-width: none !important;
     }
 
     .preview::after {
         content: none;
     }
 
+    .preview .grid {
+        break-inside: auto;
+        page-break-inside: auto;
+    }
+
     .profile-photo {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+    }
+
+    /* Drag transforms create a containing block that disables page breaks. */
+    [data-rfd-draggable-id],
+    [data-rfd-draggable-context-id] {
+        transform: none !important;
+    }
+
+    /* Keep each job/project on one page so ATS parsers do not split
+       role, company, dates, bullets, and tools across a page break.
+       inline-block is the reliable Chromium print workaround. */
+    .resume-job {
+        display: inline-block;
+        width: 100%;
+        vertical-align: top;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+    }
+
+    .resume-job-heading {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .section-title {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .resume-job li {
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
 }

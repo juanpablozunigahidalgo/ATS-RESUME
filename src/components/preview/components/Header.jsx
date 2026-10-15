@@ -17,12 +17,12 @@ const Header = ({ resumeData, icons }) => {
   return (
     <header className={`mb-1 ${hasPhoto ? "flex flex-row items-center gap-4" : "f-col items-center"}`}>
       {hasPhoto && (
-        <div className="profile-photo shrink-0 w-28 h-28 rounded-full overflow-hidden border-2 border-blue-700 bg-gray-100">
+        <div className="profile-photo shrink-0 w-36 h-36 rounded-full overflow-hidden">
           <img
             src={photoSrc}
             alt={`${resumeData.name}, ${resumeData.position}`}
-            width={112}
-            height={112}
+            width={144}
+            height={144}
             className="object-cover object-center h-full w-full"
           />
         </div>

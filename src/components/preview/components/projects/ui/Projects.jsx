@@ -37,12 +37,12 @@ const Projects = () => {
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
-                  className={`mb-1 ${
+                  className={`resume-job mb-1 ${
                     snapshot.isDragging &&
                     "outline-dashed outline-2 outline-gray-400 bg-white"
                   }`}
                 >
-                  <div className="flex flex-row justify-between space-y-1">
+                  <div className="resume-job-heading flex flex-row justify-between space-y-1">
                     <p className="content i-bold">{item.name}</p>
                     <DateRange
                       startYear={item.startYear}

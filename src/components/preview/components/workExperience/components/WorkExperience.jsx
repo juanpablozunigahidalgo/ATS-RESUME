@@ -23,20 +23,22 @@ const WorkExperience = ({item, index}) => {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={`mb-2 ${
+          className={`resume-job mb-2 ${
             snapshot.isDragging &&
             "outline-dashed outline-2 outline-gray-400 bg-white"
           }`}
         >
-          <div className="flex flex-row justify-between items-baseline gap-2">
-            <h3 className="content i-bold">{item.position}</h3>
-            <DateRange
-              startYear={item.startYear}
-              endYear={item.endYear}
-              id={`work-experience-start-end-date-${index}`}
-            />
+          <div className="resume-job-heading">
+            <div className="flex flex-row justify-between items-baseline gap-2">
+              <h3 className="content i-bold">{item.position}</h3>
+              <DateRange
+                startYear={item.startYear}
+                endYear={item.endYear}
+                id={`work-experience-start-end-date-${index}`}
+              />
+            </div>
+            <p className="content">{item.company}</p>
           </div>
-          <p className="content">{item.company}</p>
           {item.description && (
             <p className="content hyphens-auto">{item.description}</p>
           )}
