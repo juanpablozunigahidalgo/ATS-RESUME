@@ -12,7 +12,7 @@ const WorkExperiences = () => {
 
   return (
     <div className="flex-col-gap-2">
-      <h2 className="input-title">Work Experience</h2>
+      <h2 className="input-title">Professional Experience</h2>
       {resumeData.workExperience.map((workExperience, index) => (
         <WorkExperience
           key={index}
@@ -26,7 +26,7 @@ const WorkExperiences = () => {
                 addWorkExperience(resumeData, setResumeData)
               }}
               aria-label="Add"
-              className="p-2 w-[37px] text-white bg-fuchsia-700 rounded text-xl">
+              className="p-2 w-[37px] text-white bg-blue-700 rounded text-xl">
         <MdAddCircle/>
       </button>
     </div>

@@ -40,7 +40,7 @@ const WorkExperience = ({workExperience, index}) => {
           name="description"
           className="w-full other-input h-32"
           value={workExperience.description}
-          maxLength="250"
+          maxLength="600"
           onChange={(e) =>
             handleWorkExperience(resumeData, setResumeData, e, index)
           }
@@ -51,6 +51,16 @@ const WorkExperience = ({workExperience, index}) => {
           name="keyAchievements"
           className="w-full other-input h-40"
           value={workExperience.keyAchievements}
+          onChange={(e) =>
+            handleWorkExperience(resumeData, setResumeData, e, index)
+          }
+        />
+        <textarea
+          type="text"
+          placeholder="Tools & Technologies"
+          name="tools"
+          className="w-full other-input h-20"
+          value={workExperience.tools || ""}
           onChange={(e) =>
             handleWorkExperience(resumeData, setResumeData, e, index)
           }
@@ -86,7 +96,7 @@ const WorkExperience = ({workExperience, index}) => {
           removeWorkExperience(resumeData, setResumeData, index)
         }}
         aria-label="Remove"
-        className="p-2 h-fit text-white bg-fuchsia-700 rounded text-xl"
+        className="p-2 h-fit text-white bg-blue-700 rounded text-xl"
       >
         <BsTrash3/>
       </button>

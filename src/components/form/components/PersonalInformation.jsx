@@ -32,8 +32,8 @@ const PersonalInformation = ({}) => {
           className="pi"
           value={resumeData.contactInformation}
           onChange={handleChange}
-          minLength="10"
-          maxLength="15"
+          minLength="8"
+          maxLength="30"
         />
         <input
           type="email"

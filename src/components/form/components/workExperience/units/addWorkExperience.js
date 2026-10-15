@@ -8,6 +8,7 @@ export const addWorkExperience = (resumeData, setResumeData) => {
         position: "",
         description: "",
         keyAchievements: "",
+        tools: "",
         startYear: "",
         endYear: "",
       },

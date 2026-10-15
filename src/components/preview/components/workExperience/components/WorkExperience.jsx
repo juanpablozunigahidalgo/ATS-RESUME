@@ -3,11 +3,11 @@ import DateRange from "../../../../utility/DateRange";
 import dynamic from "next/dynamic";
 
 const Droppable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Droppable),
+  () => import("@hello-pangea/dnd").then((mod) => mod.Droppable),
   {ssr: false}
 );
 const Draggable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Draggable),
+  () => import("@hello-pangea/dnd").then((mod) => mod.Draggable),
   {ssr: false}
 );
 
@@ -19,25 +19,27 @@ const WorkExperience = ({item, index}) => {
       index={index}
     >
       {(provided, snapshot) => (
-        <div
+        <article
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className={`mb-1 ${
+          className={`mb-2 ${
             snapshot.isDragging &&
             "outline-dashed outline-2 outline-gray-400 bg-white"
           }`}
         >
-          <div className="flex flex-row justify-between space-y-1">
-            <p className="content i-bold">{item.company}</p>
+          <div className="flex flex-row justify-between items-baseline gap-2">
+            <h3 className="content i-bold">{item.position}</h3>
             <DateRange
               startYear={item.startYear}
               endYear={item.endYear}
-              id={`work-experience-start-end-date`}
+              id={`work-experience-start-end-date-${index}`}
             />
           </div>
-          <p className="content">{item.position}</p>
-          <p className="content hyphens-auto">{item.description}</p>
+          <p className="content">{item.company}</p>
+          {item.description && (
+            <p className="content hyphens-auto">{item.description}</p>
+          )}
 
           <Droppable
             droppableId={`WORK_EXPERIENCE_KEY_ACHIEVEMENT-${index}`}
@@ -84,7 +86,13 @@ const WorkExperience = ({item, index}) => {
               </ul>
             )}
           </Droppable>
-        </div>
+          {item.tools && (
+            <p className="sub-content mt-0.5">
+              <span className="i-bold">Tools &amp; Technologies: </span>
+              {item.tools}
+            </p>
+          )}
+        </article>
       )}
     </Draggable>
   );

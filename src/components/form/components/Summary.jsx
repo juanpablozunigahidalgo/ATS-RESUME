@@ -13,7 +13,7 @@ const Summary = () => {
           className="w-full other-input h-40"
           value={resumeData.summary}
           onChange={handleChange}
-          maxLength="500"
+          maxLength="2000"
         />
       </div>
     </div>

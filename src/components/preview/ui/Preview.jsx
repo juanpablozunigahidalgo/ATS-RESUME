@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
 import {FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaTelegramPlane,} from "react-icons/fa";
 import {CgWebsite} from "react-icons/cg";
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import {ResumeContext} from "../../builder";
 import dynamic from "next/dynamic";
 import ModalHighlightMenu from "../components/ModalHighlightMenu";
@@ -13,14 +13,14 @@ import {onDragEndHandler} from "../utils/onDrugEndHandler";
 
 const DragDropContext = dynamic(
   () =>
-    import("react-beautiful-dnd").then((mod) => {
+    import("@hello-pangea/dnd").then((mod) => {
       return mod.DragDropContext;
     }),
   {ssr: false}
 );
 
 const Preview = () => {
-  const {resumeData, setResumeData} = useContext(ResumeContext);
+  const {resumeData} = useContext(ResumeContext);
   const icons = [
     {name: "github", icon: <FaGithub/>},
     {name: "linkedin", icon: <FaLinkedin/>},

@@ -5,11 +5,11 @@ import Certification from "../components/Certification";
 import dynamic from "next/dynamic";
 
 const Droppable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Droppable),
+  () => import("@hello-pangea/dnd").then((mod) => mod.Droppable),
   { ssr: false }
 );
 const Draggable = dynamic(
-  () => import("react-beautiful-dnd").then((mod) => mod.Draggable),
+  () => import("@hello-pangea/dnd").then((mod) => mod.Draggable),
   { ssr: false }
 );
 
@@ -32,12 +32,12 @@ const LeftSide = ({ resumeData }) => {
           </h2>
           {resumeData.education.map((item, index) => (
             <div key={index} className="mb-1">
-              <p className="content i-bold">{item.degree}</p>
+              <h3 className="content i-bold">{item.degree}</h3>
               <p className="content">{item.school}</p>
               <DateRange
                 startYear={item.startYear}
                 endYear={item.endYear}
-                id={`education-start-end-date`}
+                id={`education-start-end-date-${index}`}
               />
             </div>
           ))}
