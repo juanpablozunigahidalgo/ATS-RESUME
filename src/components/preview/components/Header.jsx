@@ -1,6 +1,6 @@
-import Image from "next/image";
 import ContactInfo from "../components/ContactInfo";
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
+import { resolveAssetUrl } from "../../utility/resumeJson";
 
 const toHref = (link) => {
   if (!link) return "#";
@@ -10,29 +10,20 @@ const toHref = (link) => {
   return `https://${link}`;
 };
 
-const withBase = (src) => {
-  if (!src) return src;
-  if (src.startsWith("data:") || src.startsWith("http://") || src.startsWith("https://")) {
-    return src;
-  }
-  const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  return `${base}${src.startsWith("/") ? src : `/${src}`}`;
-};
-
 const Header = ({ resumeData, icons }) => {
-  const hasPhoto = resumeData.profilePicture && resumeData.profilePicture.length > 0;
+  const photoSrc = resolveAssetUrl(resumeData.profilePicture);
+  const hasPhoto = Boolean(photoSrc);
 
   return (
     <header className={`mb-1 ${hasPhoto ? "flex flex-row items-center gap-4" : "f-col items-center"}`}>
       {hasPhoto && (
-        <div className="profile-photo shrink-0 w-28 h-28 rounded-full overflow-hidden border-2 border-blue-700">
-          <Image
-            src={withBase(resumeData.profilePicture)}
+        <div className="profile-photo shrink-0 w-28 h-28 rounded-full overflow-hidden border-2 border-blue-700 bg-gray-100">
+          <img
+            src={photoSrc}
             alt={`${resumeData.name}, ${resumeData.position}`}
             width={112}
             height={112}
             className="object-cover object-center h-full w-full"
-            unoptimized
           />
         </div>
       )}
