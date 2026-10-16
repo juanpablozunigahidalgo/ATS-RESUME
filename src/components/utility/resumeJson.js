@@ -10,6 +10,11 @@ export const orderResumeData = (data) => {
     email: data.email ?? "",
     address: data.address ?? "",
     profilePicture: data.profilePicture ?? "",
+    profilePicturePosition: {
+      x: clampFocus(data.profilePicturePosition?.x, 50),
+      y: clampFocus(data.profilePicturePosition?.y, 50),
+      zoom: clampZoom(data.profilePicturePosition?.zoom, 1),
+    },
     socialMedia: Array.isArray(data.socialMedia)
       ? data.socialMedia.map((item) => ({
           socialMedia: item.socialMedia ?? "",
@@ -61,6 +66,43 @@ export const orderResumeData = (data) => {
 
 export const formatResumeJson = (data) =>
   JSON.stringify(orderResumeData(data), null, 2);
+
+export const PROFILE_FOCUS_OVERFLOW = 40;
+export const PROFILE_MAX_ZOOM = 8;
+
+const clampFocus = (value, fallback = 50) => {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) {
+    return fallback;
+  }
+  return Math.min(100 + PROFILE_FOCUS_OVERFLOW, Math.max(-PROFILE_FOCUS_OVERFLOW, numeric));
+};
+
+const clampZoom = (value, fallback = 1) => {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) {
+    return fallback;
+  }
+  return Math.min(PROFILE_MAX_ZOOM, Math.max(1, numeric));
+};
+
+export const getProfilePicturePosition = (data) => ({
+  x: clampFocus(data?.profilePicturePosition?.x, 50),
+  y: clampFocus(data?.profilePicturePosition?.y, 50),
+  zoom: clampZoom(data?.profilePicturePosition?.zoom, 1),
+});
+
+export const getProfilePhotoStyle = (data) => {
+  const { x, y, zoom } = getProfilePicturePosition(data);
+  return {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: `${x}% ${y}%`,
+    transform: `scale(${zoom})`,
+    transformOrigin: `${x}% ${y}%`,
+  };
+};
 
 export const resolveAssetUrl = (src) => {
   if (!src) {

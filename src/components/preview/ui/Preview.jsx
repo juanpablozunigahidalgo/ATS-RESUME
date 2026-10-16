@@ -39,7 +39,7 @@ const Preview = () => {
         <DragDropContext onDragEnd={onDragEndHandler}>
           <Header resumeData={resumeData} icons={icons}/>
           <hr className="border-dashed my-2"/>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="resume-columns grid grid-cols-3 gap-6">
             <LeftSide resumeData={resumeData}/>
             <RightSide resumeData={resumeData}/>
           </div>

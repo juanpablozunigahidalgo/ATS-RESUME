@@ -29,7 +29,11 @@ export default function Builder() {
     if (file instanceof Blob) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setResumeData({...resumeData, profilePicture: event.target.result});
+        setResumeData((current) => ({
+          ...current,
+          profilePicture: event.target.result,
+          profilePicturePosition: { x: 50, y: 50, zoom: 1 },
+        }));
       };
       reader.readAsDataURL(file);
     } else {

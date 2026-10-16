@@ -1,27 +1,14 @@
 import React, {useContext} from "react";
 import {ResumeContext} from "../../builder";
-import { resolveAssetUrl } from "../../utility/resumeJson";
+import ProfilePhotoEditor from "./ProfilePhotoEditor";
 
 const PersonalInformation = ({}) => {
-  const {resumeData, handleProfilePicture, handleChange} =
-    useContext(ResumeContext);
-  const photoSrc = resolveAssetUrl(resumeData.profilePicture);
+  const {resumeData, handleChange} = useContext(ResumeContext);
 
   return (
     <div className="flex-col-gap-2">
       <h2 className="input-title">Personal Information</h2>
-      {photoSrc && (
-        <div className="flex items-center gap-3 mb-2">
-          <img
-            src={photoSrc}
-            alt={resumeData.name || "Profile"}
-            className="w-20 h-20 rounded-full object-cover border-2 border-white shadow"
-          />
-          <p className="text-white text-sm">
-            Profile photo is visible on the CV. Choose a new file to replace it.
-          </p>
-        </div>
-      )}
+      <ProfilePhotoEditor />
       <div className="grid-4">
         <input
           type="text"
@@ -64,14 +51,6 @@ const PersonalInformation = ({}) => {
           className="pi"
           value={resumeData.address}
           onChange={handleChange}
-        />
-        <input
-          type="file"
-          name="profileImage"
-          accept="image/*"
-          className="profileInput"
-          onChange={handleProfilePicture}
-          placeholder="Profile Picture"
         />
       </div>
     </div>

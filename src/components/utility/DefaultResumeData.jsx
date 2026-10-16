@@ -5,6 +5,11 @@ const DefaultResumeData = {
   email: "juanpablo.zunigah@gmail.com",
   address: "Göteborg, Sweden",
   profilePicture: "/profile.jpg",
+  profilePicturePosition: {
+    x: 50,
+    y: 50,
+    zoom: 1,
+  },
   socialMedia: [
     {
       socialMedia: "Website",

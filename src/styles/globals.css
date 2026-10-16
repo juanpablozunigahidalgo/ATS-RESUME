@@ -117,7 +117,7 @@
 
 @media print {
     .exclude-print {
-        display: none;
+        display: none !important;
     }
 
     .rm-padding-print {
@@ -135,41 +135,90 @@
         overflow: visible !important;
     }
 
-    .preview {
+    .preview,
+    .resume-sheet {
         overflow: visible !important;
         height: auto !important;
         max-height: none !important;
         position: static !important;
-        max-width: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
     }
 
     .preview::after {
         content: none;
     }
 
-    .preview .grid {
-        break-inside: auto;
-        page-break-inside: auto;
+    /* CSS Grid does not split across pages in Chrome, so the two-column
+       body was jumping to page 2 and leaving page 1 empty. Floats paginate. */
+    .resume-header,
+    .resume-columns {
+        display: block !important;
+    }
+
+    .resume-header::after,
+    .resume-columns::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .resume-header .col-span-1,
+    .resume-columns .col-span-1 {
+        float: left;
+        width: 32%;
+        margin: 0;
+    }
+
+    .resume-header .col-span-2,
+    .resume-columns .col-span-2 {
+        float: right;
+        width: 64%;
+        margin: 0;
+    }
+
+    .resume-header {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    hr {
+        break-after: avoid;
+        page-break-after: avoid;
     }
 
     .profile-photo {
+        contain: size;
+        overflow: hidden !important;
+        width: 11.385rem !important;
+        height: 11.385rem !important;
+        max-width: 11.385rem !important;
+        max-height: 11.385rem !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
     }
 
-    /* Drag transforms create a containing block that disables page breaks. */
+    .profile-photo-img {
+        display: block !important;
+        width: 11.385rem !important;
+        height: 11.385rem !important;
+        max-width: 11.385rem !important;
+        max-height: 11.385rem !important;
+        transform: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        image-rendering: auto;
+    }
+
     [data-rfd-draggable-id],
     [data-rfd-draggable-context-id] {
         transform: none !important;
     }
 
-    /* Keep each job/project on one page so ATS parsers do not split
-       role, company, dates, bullets, and tools across a page break.
-       inline-block is the reliable Chromium print workaround. */
     .resume-job {
-        display: inline-block;
-        width: 100%;
-        vertical-align: top;
+        display: block;
         break-inside: avoid;
         page-break-inside: avoid;
         -webkit-column-break-inside: avoid;
