@@ -13,15 +13,15 @@ const DefaultResumeData = {
   socialMedia: [
     {
       socialMedia: "Website",
-      link: "www.zunigajp.com",
+      link: "https://zunigajp.com/",
     },
     {
       socialMedia: "LinkedIn",
-      link: "linkedin.com/in/jpzuniga",
+      link: "https://linkedin.com/in/jpzuniga",
     },
     {
       socialMedia: "Github",
-      link: "github.com/juanpablozunigahidalgo",
+      link: "https://github.com/juanpablozunigahidalgo",
     },
   ],
   summary:

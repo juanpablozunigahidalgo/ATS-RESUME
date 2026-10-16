@@ -48,7 +48,7 @@ const Header = ({ resumeData, icons }) => {
                   return <span key={iconIndex}>{icon.icon}</span>;
                 }
               })}
-              {socialMedia.link}
+              {toHref(socialMedia.link)}
             </a>
           );
         })}
